@@ -11,12 +11,18 @@ defmodule Drop do
   ant the function return sa velocity in meters per second.
   """
 
-  @spec fall_velocity(number()) :: number()
-
   import :math, only: [sqrt: 1]
 
-  def fall_velocity(distance, gravity \\ 9.8) do
-    sqrt(2 * gravity * distance)
+  def fall_velocity(:earth, distance) when distance >= 0 do
+    sqrt(2 * 9.8 * distance)
+  end
+
+  def fall_velocity(:moon, distance) when distance >= 0 do
+    sqrt(2 * 1.6 * distance)
+  end
+
+  def fall_velocity(:mars, distance) when distance >= 0 do
+    sqrt(2 * 3.71 * distance)
   end
 
 end
